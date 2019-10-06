@@ -47,7 +47,6 @@ const getInput = (event) => {
                 forkCount.innerHTML = response[index].forks_count;
                 document.querySelector(`#info${index}`).appendChild(forkCount);
             })
-
         }
     }
 
@@ -60,6 +59,9 @@ const getInput = (event) => {
             
             counterForWarning++;
             let warning = counter === 1 ? document.createElement('P') : null;
+            let outputBox = document.createElement('div');
+            outputBox.id ="output";
+            document.querySelector('.container').appendChild(outputBox);
             warning.innerHTML = "User not found";
             document.getElementById('output').appendChild(warning);
 
