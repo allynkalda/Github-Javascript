@@ -1,3 +1,5 @@
+let counterForWarning = 0;
+
 const getInput = (event) => {
     event.preventDefault();
     let input = document.getElementById("input").value;
@@ -12,7 +14,7 @@ const getInput = (event) => {
 
             let thirdDiv = document.createElement('div');
             thirdDiv.className = 'repo-box';
-            document.getElementById('output').appendChild(thirdDiv)
+            document.querySelector('.container').appendChild(thirdDiv)
 
             let repo = document.createElement('h4');
             repo.innerHTML = "Repositories";
@@ -21,28 +23,29 @@ const getInput = (event) => {
 
             response.map((item, index) => {
                 let info = document.createElement('div');
+                info.id = `info${index}`;
                 info.className = "info-box"
                 document.querySelector('.repo-box').appendChild(info);
                 let repoName = document.createElement('p');
                 repoName.innerHTML = response[index].name;
                 repoName.className = "list"
-                document.querySelector('.info-box').appendChild(repoName);
+                document.querySelector(`#info${index}`).appendChild(repoName);
 
                 let starImage = document.createElement('img');
                 starImage.src = "https://via.placeholder.com/20";
-                document.querySelector('.info-box').appendChild(starImage);
+                document.querySelector(`#info${index}`).appendChild(starImage);
 
                 let starCount = document.createElement('p');
                 starCount.innerHTML = response[index].stargazers_count;
-                document.querySelector('.info-box').appendChild(starCount);
+                document.querySelector(`#info${index}`).appendChild(starCount);
 
                 let forkImage = document.createElement('img');
                 forkImage.src = "https://via.placeholder.com/20";
-                document.querySelector('.info-box').appendChild(forkImage);
+                document.querySelector(`#info${index}`).appendChild(forkImage);
 
                 let forkCount = document.createElement('p');
                 forkCount.innerHTML = response[index].forks_count;
-                document.querySelector('.info-box').appendChild(forkCount);
+                document.querySelector(`#info${index}`).appendChild(forkCount);
             })
 
         }
@@ -52,14 +55,20 @@ const getInput = (event) => {
        let response  = await fetch(`https://api.github.com/users/${input}`)
             .then(data => data.json())
             .catch(err => err.message);
-        console.log(response)
+        
         if (response.message === "Not Found") {
-            let warning = document.createElement('P');
+            
+            counterForWarning++;
+            let warning = counter === 1 ? document.createElement('P') : null;
             warning.innerHTML = "User not found";
             document.getElementById('output').appendChild(warning);
 
         } else {
 
+            let outputBox = document.createElement('div');
+            outputBox.id ="output";
+            document.querySelector('.container').appendChild(outputBox)
+            
             let firstDiv = document.createElement('div');
             firstDiv.className = 'image-box';
             document.getElementById('output').appendChild(firstDiv)
@@ -70,6 +79,7 @@ const getInput = (event) => {
 
             let image = document.createElement('img')
             image.src = response.avatar_url;
+            image.className = "user-image"
             document.querySelector('.image-box').appendChild(image);
             
             let user = document.createElement('P');

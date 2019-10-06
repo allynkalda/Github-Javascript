@@ -1,0 +1,54 @@
+body {
+    background-color: grey;
+    padding: 30px;
+}
+
+.container {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 25px 1px rgba(0,0,0,0.75);
+}
+
+input {
+    height: 2em;
+    padding-left: 10px;
+    width: 250px;
+}
+
+button {
+    height: 2.4em
+}
+
+#output {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.user-image {
+    width: 80%;
+    height: auto
+}
+
+
+.repo-box {
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+    align-items: center
+}
+
+.info-box {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
