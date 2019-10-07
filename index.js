@@ -1,7 +1,17 @@
-let counterForWarning = 0;
+var counterForLoad = 0;
 
 const getInput = (event) => {
     event.preventDefault();
+    counterForLoad++;
+    
+    if (counterForLoad > 1) {
+        let output = document.querySelector('#output');
+        let repoBox = document.querySelector('.repo-box');
+        output.remove();
+        repoBox.remove();
+        counterForLoad = 0;
+    }
+    
     let input = document.getElementById("input").value;
 
     const getRepo = async () => {
@@ -32,7 +42,8 @@ const getInput = (event) => {
                 document.querySelector(`#info${index}`).appendChild(repoName);
 
                 let starImage = document.createElement('img');
-                starImage.src = "https://via.placeholder.com/20";
+                starImage.className = "icon";
+                starImage.src = "./images/star.png";
                 document.querySelector(`#info${index}`).appendChild(starImage);
 
                 let starCount = document.createElement('p');
@@ -40,7 +51,8 @@ const getInput = (event) => {
                 document.querySelector(`#info${index}`).appendChild(starCount);
 
                 let forkImage = document.createElement('img');
-                forkImage.src = "https://via.placeholder.com/20";
+                forkImage.className = "icon";
+                forkImage.src = "./images/fork.png";
                 document.querySelector(`#info${index}`).appendChild(forkImage);
 
                 let forkCount = document.createElement('p');
@@ -57,10 +69,10 @@ const getInput = (event) => {
         
         if (response.message === "Not Found") {
             
-            counterForWarning++;
-            let warning = counter === 1 ? document.createElement('P') : null;
+            let warning = document.createElement('p');
             let outputBox = document.createElement('div');
             outputBox.id ="output";
+            outputBox.className = "warning";
             document.querySelector('.container').appendChild(outputBox);
             warning.innerHTML = "User not found";
             document.getElementById('output').appendChild(warning);
@@ -100,6 +112,7 @@ const getInput = (event) => {
         }
     }
     getUserInfo()
+    counterForLoad = 1;
   }
 
   
