@@ -7,8 +7,8 @@ const getInput = (event) => {
     if (counterForLoad > 1) {
         let output = document.querySelector('#output');
         let repoBox = document.querySelector('.repo-box');
-        output.remove();
-        repoBox.remove();
+        output ? output.remove() : null;
+        repoBox ? repoBox.remove() : null;
         counterForLoad = 0;
     }
     
