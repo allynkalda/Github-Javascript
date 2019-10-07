@@ -43,7 +43,7 @@ const getInput = (event) => {
 
                 let starImage = document.createElement('img');
                 starImage.className = "icon";
-                starImage.src = "./images/star.png";
+                starImage.src = "../images/star.png";
                 document.querySelector(`#info${index}`).appendChild(starImage);
 
                 let starCount = document.createElement('p');
@@ -52,7 +52,7 @@ const getInput = (event) => {
 
                 let forkImage = document.createElement('img');
                 forkImage.className = "icon";
-                forkImage.src = "./images/fork.png";
+                forkImage.src = "../images/fork.png";
                 document.querySelector(`#info${index}`).appendChild(forkImage);
 
                 let forkCount = document.createElement('p');
