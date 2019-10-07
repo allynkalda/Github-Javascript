@@ -18,7 +18,6 @@ const getInput = (event) => {
         let response  = await fetch(`https://api.github.com/users/${input}/repos`)
             .then(data => data.json())
             .catch(err => err.message);
-            console.log(response)
 
         if (response) {
 
